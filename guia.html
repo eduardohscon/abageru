@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Benefícios - APAVIKOM</title>
+    <!-- Tailwind CSS para design moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para os ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-12">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-gradient-to-r from-green-600 to-teal-600 text-white shadow-md">
+        <div class="max-w-md mx-auto px-4 py-6 text-center">
+            <div class="inline-flex items-center justify-center bg-white text-teal-600 rounded-full p-3 mb-2 shadow-inner">
+                <i data-lucide="shield-check" class="w-8 h-8"></i>
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight">APAVIKOM</h1>
+            <p class="text-sm text-teal-100 font-medium mt-1">Clube de Benefícios Vila Kosmos</p>
+        </div>
+    </header>
+
+    <!-- ÁREA PRINCIPAL -->
+    <main class="max-w-md mx-auto px-4 mt-6">
+        
+        <!-- BARRA DE BUSCA -->
+        <div class="relative mb-4">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                <i data-lucide="search" class="w-5 h-5"></i>
+            </span>
+            <input 
+                type="text" 
+                id="searchBar" 
+                onkeyup="filterPartners()" 
+                placeholder="Buscar por nome, atividade ou palavra-chave..." 
+                class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+            >
+        </div>
+
+        <!-- FILTROS RÁPIDOS POR TAG -->
+        <div class="flex gap-2 overflow-x-auto pb-4 mb-4 scrollbar-none" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+            <button onclick="filterByTag('todos')" class="tag-filter-btn bg-teal-600 text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-sm transition-all">Todos</button>
+            <button onclick="filterByTag('comercio')" class="tag-filter-btn bg-white border border-gray-200 text-gray-600 text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-sm hover:border-teal-500 transition-all">🛒 Comércio</button>
+            <button onclick="filterByTag('servicos')" class="tag-filter-btn bg-white border border-gray-200 text-gray-600 text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-sm hover:border-teal-500 transition-all">🛠️ Serviços / Obras</button>
+            <button onclick="filterByTag('alimentacao')" class="tag-filter-btn bg-white border border-gray-200 text-gray-600 text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-sm hover:border-teal-500 transition-all">🍕 Alimentação</button>
+            <button onclick="filterByTag('saude')" class="tag-filter-btn bg-white border border-gray-200 text-gray-600 text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-sm hover:border-teal-500 transition-all">💆 Saúde & Beleza</button>
+        </div>
+
+        <!-- LISTA DE PARCEIROS -->
+        <div class="space-y-4" id="partnersList">
+            
+            <!-- EXEMPLO 1: COMÉRCIO / ALIMENTAÇÃO -->
+            <div class="partner-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-tags="comercio alimentacao">
+                <div class="p-5">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <!-- Bloco de Tags Internas -->
+                            <div class="flex gap-1 mb-1">
+                                <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">🛒 Comércio</span>
+                                <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">Hortifruti</span>
+                            </div>
+                            <h3 class="partner-name text-lg font-bold text-gray-900">Vendinha do Seu João</h3>
+                        </div>
+                        <span class="bg-green-50 text-green-700 text-xs font-extrabold px-2.5 py-1 rounded-lg border border-green-100 whitespace-nowrap">
+                            10% OFF
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 mt-2">Desconto em todo o setor de hortifruti nas quartas e quintas-feiras.</p>
+                    
+                    <!-- Como funciona o atendimento do comércio físico -->
+                    <div class="bg-gray-50 rounded-xl p-2.5 mt-3 text-xs text-gray-600 flex items-center gap-2">
+                        <i data-lucide="store" class="w-4 h-4 text-blue-500 shrink-0"></i>
+                        <span><strong>Como usar:</strong> Vá à loja física e apresente a carteirinha no caixa.</span>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
+                        <span class="flex items-center"><i data-lucide="map-pin" class="w-4 h-4 mr-1 text-gray-400"></i> Av. Meriti, 1420</span>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-3 py-1.5 rounded-lg transition-colors">
+                            <i data-lucide="phone" class="w-3.5 h-3.5 mr-1"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXEMPLO 2: PRESTADOR DE SERVIÇO / AUTÔNOMO -->
+            <div class="partner-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-tags="servicos">
+                <div class="p-5">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <!-- Bloco de Tags Internas -->
+                            <div class="flex gap-1 mb-1">
+                                <span class="bg-purple-50 text-purple-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">🛠️ Serviços / Obras</span>
+                                <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">Reformas</span>
+                            </div>
+                            <h3 class="partner-name text-lg font-bold text-gray-900">Antônio Pedreiro & Acabamentos</h3>
+                        </div>
+                        <span class="bg-purple-50 text-purple-700 text-xs font-extrabold px-2.5 py-1 rounded-lg border border-purple-100 whitespace-nowrap">
+                            Bônus Grátis
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 mt-2">Visita técnica e orçamento sem taxa. Fechando a obra, ganhe a pintura de uma parede cômodo inteiramente grátis.</p>
+                    
+                    <!-- Como funciona o atendimento de serviços prestados em domicílio -->
+                    <div class="bg-purple-50/50 rounded-xl p-2.5 mt-3 text-xs text-purple-900 flex items-center gap-2">
+                        <i data-lucide="home" class="w-4 h-4 text-purple-500 shrink-0"></i>
+                        <span><strong>Como usar:</strong> Atendimento residencial. Informe que é associado no primeiro contato do WhatsApp.</span>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
+                        <span class="flex items-center"><i data-lucide="user" class="w-4 h-4 mr-1 text-gray-400"></i> Atende toda Vila Kosmos</span>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-3 py-1.5 rounded-lg transition-colors">
+                            <i data-lucide="phone" class="w-3.5 h-3.5 mr-1"></i> Chamar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXEMPLO 3: SAÚDE / CLÍNICA OU CONSULTÓRIO -->
+            <div class="partner-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-tags="saude servicos">
+                <div class="p-5">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex gap-1 mb-1">
+                                <span class="bg-teal-50 text-teal-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">💆 Saúde & Beleza</span>
+                                <span class="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">Dentista</span>
+                            </div>
+                            <h3 class="partner-name text-lg font-bold text-gray-900">Dra. Amanda Costa Odontologia</h3>
+                        </div>
+                        <span class="bg-green-50 text-green-700 text-xs font-extrabold px-2.5 py-1 rounded-lg border border-green-100 whitespace-nowrap">
+                            15% OFF
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 mt-2">15% de desconto em procedimentos de limpeza, clareamento e restaurações.</p>
+                    
+                    <div class="bg-gray-50 rounded-xl p-2.5 mt-3 text-xs text-gray-600 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4 text-teal-500 shrink-0"></i>
+                        <span><strong>Como usar:</strong> Agendamento prévio necessário. Apresente a carteirinha no dia da consulta.</span>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
+                        <span class="flex items-center"><i data-lucide="building" class="w-4 h-4 mr-1 text-gray-400"></i> Carioca Offices, Sl 412</span>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-3 py-1.5 rounded-lg transition-colors">
+                            <i data-lucide="phone" class="w-3.5 h-3.5 mr-1"></i> Agendar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- INFORMAÇÃO -->
+        <div class="bg-teal-50 border border-teal-100 rounded-2xl p-5 mt-8 text-center">
+            <h4 class="font-bold text-teal-900 text-sm">Ainda não tem sua carteirinha?</h4>
+            <p class="text-xs text-teal-700 mt-1.5 leading-relaxed">
+                Mantenha sua contribuição com a associação em dia e solicite o envio do seu documento digital diretamente à secretaria da APAVIKOM.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="max-w-md mx-auto text-center mt-12 px-4 text-xs text-gray-400">
+        <p>© 2026 APAVIKOM - Associação Parcial Vila Kosmos de Moradores</p>
+    </footer>
+
+    <!-- LÓGICA EM JAVASCRIPT -->
+    <script>
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+
+        let currentActiveTag = 'todos';
+
+        // Filtro por botões de Tag
+        function filterByTag(tag) {
+            currentActiveTag = tag;
+            
+            // Atualiza o estilo visual dos botões de filtro
+            const buttons = document.getElementsByClassName('tag-filter-btn');
+            for (let btn of buttons) {
+                if (btn.innerText.toLowerCase().includes(tag) || (tag === 'todos' && btn.innerText === 'Todos')) {
+                    btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+                    btn.classList.add('bg-teal-600', 'text-white');
+                } else {
+                    btn.classList.remove('bg-teal-600', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+                }
+            }
+            
+            // Executa a filtragem combinando com o que estiver escrito na busca
+            filterPartners();
+        }
+
+        // Busca em tempo real + Filtro por tags combinado
+        function filterPartners() {
+            const searchInput = document.getElementById('searchBar');
+            const filterText = searchInput.value.toLowerCase();
+            const cards = document.getElementsByClassName('partner-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                const cardTags = card.getAttribute('data-tags') || '';
+                const name = card.querySelector('.partner-name').innerText.toLowerCase();
+                const text = card.querySelector('p').innerText.toLowerCase();
+                
+                // Valida o critério do texto digitado
+                const matchesText = name.includes(filterText) || text.includes(filterText) || cardTags.includes(filterText);
+                
+                // Valida o critério do botão de tag selecionado
+                const matchesTag = (currentActiveTag === 'todos' || cardTags.includes(currentActiveTag));
+
+                // Exibe ou esconde o card baseado nos dois filtros juntos
+                if (matchesText && matchesTag) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
