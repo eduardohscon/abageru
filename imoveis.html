@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APAVIKOM Imóveis - Vila Kosmos</title>
+    <!-- Tailwind CSS para design moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para os ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased pb-12">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md">
+        <div class="max-w-md mx-auto px-4 py-6 text-center">
+            <div class="inline-flex items-center justify-center bg-white text-amber-600 rounded-full p-3 mb-2 shadow-inner">
+                <i data-lucide="home" class="w-8 h-8"></i>
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight">APAVIKOM Imóveis</h1>
+            <p class="text-sm text-amber-100 font-medium mt-1">Vitrine de Oportunidades em Vila Kosmos</p>
+        </div>
+    </header>
+
+    <!-- ÁREA PRINCIPAL -->
+    <main class="max-w-md mx-auto px-4 mt-6">
+        
+        <!-- BARRA DE BUSCA ÚNICA -->
+        <div class="relative mb-4">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                <i data-lucide="search" class="w-5 h-5"></i>
+            </span>
+            <input 
+                type="text" 
+                id="searchBar" 
+                onkeyup="filterImoveis()" 
+                placeholder="Buscar por rua, quartos, casa, apto..." 
+                class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+            >
+        </div>
+
+        <!-- FILTROS PRINCIPAIS -->
+        <div class="flex gap-2 mb-6">
+            <button onclick="filterType('todos')" class="type-filter-btn flex-1 bg-amber-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm transition-all text-center">Todos</button>
+            <button onclick="filterType('aluguel')" class="type-filter-btn flex-1 bg-white border border-gray-200 text-gray-600 text-xs font-bold py-2.5 rounded-xl shadow-sm hover:border-amber-500 transition-all text-center">🔑 Aluguel</button>
+            <button onclick="filterType('venda')" class="type-filter-btn flex-1 bg-white border border-gray-200 text-gray-600 text-xs font-bold py-2.5 rounded-xl shadow-sm hover:border-amber-500 transition-all text-center">🔥 Venda (Top 10)</button>
+        </div>
+
+        <!-- LISTA DE IMÓVEIS (5 ANÚNCIOS) -->
+        <div class="space-y-6" id="imoveisList">
+            
+            <!-- ANÚNCIO 1: VENDA (TOP 10) -->
+            <div class="imovel-card bg-gradient-to-br from-amber-50/20 to-white rounded-2xl shadow-sm border border-amber-200 overflow-hidden hover:shadow-md transition-all" data-type="venda">
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1.5 text-[10px] font-extrabold tracking-wider flex justify-between items-center uppercase">
+                    <span class="flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5"></i> Vaga Exclusiva Top 10</span>
+                    <span class="bg-amber-950/20 px-2 py-0.5 rounded">Expira em 12 dias</span>
+                </div>
+                <!-- Foto do Imóvel -->
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80" alt="Casa de Vila" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="mb-2">
+                        <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Casa Duplex</span>
+                        <h3 class="imovel-title text-base font-bold text-gray-900 mt-1">Casa de Vila Linda - Próxima ao Metrô</h3>
+                    </div>
+                    <div class="flex gap-3 my-3 text-xs text-gray-500 font-medium">
+                        <span class="flex items-center gap-1"><i data-lucide="bed" class="w-4 h-4 text-gray-400"></i> 3 Qts</span>
+                        <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-gray-400"></i> 2 Vagas</span>
+                        <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-4 h-4 text-gray-400"></i> 110m²</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Excelente localização interna protegida por portão eletrônico. Varanda espaçosa, suíte e armários planejados. Perímetro vigiado pela associação.</p>
+                    <div class="mt-5 pt-3 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Valor de Venda</p>
+                            <p class="text-lg font-black text-amber-600">R$ 420.000</p>
+                        </div>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition-colors"><i data-lucide="phone" class="w-4 h-4 mr-1"></i> Contato Direto</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANÚNCIO 2: ALUGUEL -->
+            <div class="imovel-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-type="aluguel">
+                <!-- Foto do Imóvel -->
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80" alt="Apartamento Av Meriti" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="mb-2">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Apartamento</span>
+                        <h3 class="imovel-title text-base font-bold text-gray-900 mt-1">Apto Aconchegante na Av. Meriti</h3>
+                    </div>
+                    <div class="flex gap-3 my-3 text-xs text-gray-500 font-medium">
+                        <span class="flex items-center gap-1"><i data-lucide="bed" class="w-4 h-4 text-gray-400"></i> 2 Qts</span>
+                        <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-gray-400"></i> 1 Vaga</span>
+                        <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-4 h-4 text-gray-400"></i> 60m²</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Sala em dois ambientes, andar alto, condomínio fechado com portaria 24h. Muito próximo ao Carioca Shopping e condução na porta.</p>
+                    <div class="mt-5 pt-3 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Locação / Mês</p>
+                            <p class="text-lg font-black text-gray-900">R$ 1.600 <span class="text-xs font-normal text-gray-400">+ taxas</span></p>
+                        </div>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition-colors"><i data-lucide="phone" class="w-4 h-4 mr-1"></i> Falar com Dono</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANÚNCIO 3: VENDA (TOP 10) -->
+            <div class="imovel-card bg-gradient-to-br from-amber-50/20 to-white rounded-2xl shadow-sm border border-amber-200 overflow-hidden hover:shadow-md transition-all" data-type="venda">
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1.5 text-[10px] font-extrabold tracking-wider flex justify-between items-center uppercase">
+                    <span class="flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5"></i> Vaga Exclusiva Top 10</span>
+                    <span class="bg-amber-950/20 px-2 py-0.5 rounded">Expira em 27 dias</span>
+                </div>
+                <!-- Foto do Imóvel -->
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Casa Grande" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="mb-2">
+                        <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Casa Linear</span>
+                        <h3 class="imovel-title text-base font-bold text-gray-900 mt-1">Casa Ampla com Quintal e Churrasqueira</h3>
+                    </div>
+                    <div class="flex gap-3 my-3 text-xs text-gray-500 font-medium">
+                        <span class="flex items-center gap-1"><i data-lucide="bed" class="w-4 h-4 text-gray-400"></i> 3 Qts (1 Suíte)</span>
+                        <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-gray-400"></i> 3 Vagas</span>
+                        <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-4 h-4 text-gray-400"></i> 150m²</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Terreno plano e espaçoso, área gourmet nos fundos perfeita para lazer em família. Cozinha grande e lavanderia independente. Local super silencioso.</p>
+                    <div class="mt-5 pt-3 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Valor de Venda</p>
+                            <p class="text-lg font-black text-amber-600">R$ 580.000</p>
+                        </div>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition-colors"><i data-lucide="phone" class="w-4 h-4 mr-1"></i> Contato Direto</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANÚNCIO 4: ALUGUEL -->
+            <div class="imovel-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-type="aluguel">
+                <!-- Foto do Imóvel -->
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80" alt="Apartamento Vicente de Carvalho" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="mb-2">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Apartamento</span>
+                        <h3 class="imovel-title text-base font-bold text-gray-900 mt-1">Sala e Quarto Prático - Vila Kosmos</h3>
+                    </div>
+                    <div class="flex gap-3 my-3 text-xs text-gray-500 font-medium">
+                        <span class="flex items-center gap-1"><i data-lucide="bed" class="w-4 h-4 text-gray-400"></i> 1 Qt</span>
+                        <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-gray-400"></i> 0 Vagas</span>
+                        <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-4 h-4 text-gray-400"></i> 45m²</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Imóvel compacto ideal para solteiros ou casais. Todo em piso frio, recém-pintado e sem taxa de condomínio alta. Excelente custo-benefício.</p>
+                    <div class="mt-5 pt-3 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Locação / Mês</p>
+                            <p class="text-lg font-black text-gray-900">R$ 1.100 <span class="text-xs font-normal text-gray-400">+ taxas</span></p>
+                        </div>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition-colors"><i data-lucide="phone" class="w-4 h-4 mr-1"></i> Falar com Dono</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANÚNCIO 5: ALUGUEL -->
+            <div class="imovel-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all" data-type="aluguel">
+                <!-- Foto do Imóvel -->
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=600&q=80" alt="Casa Duplex Vila" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <div class="mb-2">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Casa de Vila</span>
+                        <h3 class="imovel-title text-base font-bold text-gray-900 mt-1">Casa de Vila Duplex para Locação</h3>
+                    </div>
+                    <div class="flex gap-3 my-3 text-xs text-gray-500 font-medium">
+                        <span class="flex items-center gap-1"><i data-lucide="bed" class="w-4 h-4 text-gray-400"></i> 2 Qts</span>
+                        <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-gray-400"></i> 1 Vaga</span>
+                        <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-4 h-4 text-gray-400"></i> 85m²</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Dois quartos no segundo andar, sala ampla e lavabo no primeiro pavimento. Ambiente familiar e portão fechado de segurança dos moradores.</p>
+                    <div class="mt-5 pt-3 border-t border-gray-100 flex justify-between items-center">
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Locação / Mês</p>
+                            <p class="text-lg font-black text-gray-900">R$ 1.850 <span class="text-xs font-normal text-gray-400">+ taxas</span></p>
+                        </div>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="inline-flex items-center bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition-colors"><i data-lucide="phone" class="w-4 h-4 mr-1"></i> Falar com Dono</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- REGRAS INSTITUCIONAIS NO RODAPÉ -->
+        <div class="bg-gray-100 border border-gray-200 rounded-2xl p-5 mt-8 text-xs text-gray-600 leading-relaxed">
+            <h4 class="font-bold text-gray-900 text-sm mb-2 flex items-center gap-1"><i data-lucide="shield" class="w-4 h-4 text-amber-600"></i> Regulamento de Anúncios</h4>
+            <p class="mb-2">🔹 <strong>Locação:</strong> Catálogo aberto e ilimitado para qualquer proprietário morador do perímetro Vila Kosmos.</p>
+            <p>🔸 <strong>Venda (Top 10):</strong> Sistema rotativo com limite máximo de 10 imóveis ativos simultaneamente. Cada imóvel permanece em destaque por no máximo 90 dias para garantir dinamismo e exclusividade à vitrine.</p>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="max-w-md mx-auto text-center mt-12 px-4 text-xs text-gray-400">
+        <p>© 2026 APAVIKOM - Associação Parcial Vila Kosmos de Moradores</p>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        lucide.createIcons();
+
+        let activeType = 'todos';
+
+        function filterType(type) {
+            activeType = type;
+            
+            const buttons = document.getElementsByClassName('type-filter-btn');
+            for (let btn of buttons) {
+                if (btn.innerText.toLowerCase().includes(type) || (type === 'todos' && btn.innerText === 'Todos')) {
+                    btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+                    btn.classList.add('bg-amber-600', 'text-white');
+                } else {
+                    btn.classList.remove('bg-amber-600', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+                }
+            }
+            filterImoveis();
+        }
+
+        function filterImoveis() {
+            const searchText = document.getElementById('searchBar').value.toLowerCase();
+            const cards = document.getElementsByClassName('imovel-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                const cardType = card.getAttribute('data-type');
+                const title = card.querySelector('.imovel-title').innerText.toLowerCase();
+                const description = card.querySelector('p').innerText.toLowerCase();
+
+                const matchesText = title.includes(searchText) || description.includes(searchText);
+                const matchesType = (activeType === 'todos' || cardType === activeType);
+
+                if (matchesText && matchesType) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
